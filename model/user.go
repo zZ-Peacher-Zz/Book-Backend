@@ -9,9 +9,10 @@ import (
 
 type User struct {
 	gorm.Model
-	Username string `gorm:"unique_index;not null"`
-	Email    string `gorm:"unique_index;not null"`
-	Password string `gorm:"not null"`
+	Username  string `gorm:"unique_index;not null"`
+	Email     string `gorm:"unique_index;not null"`
+	Password  string `gorm:"not null"`
+	Favorites []Book `gorm:"many2many:favorites;"`
 }
 
 func (u *User) HashPassword(inputPassword string) (string, error) {
